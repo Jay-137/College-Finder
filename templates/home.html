@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>body {
+    display: flex; /* Use flex layout */
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    height: 100vh; /* Full viewport height */
+    margin: 0; /* Remove default margin */
+    padding: 0;
+    background-color: #f4f4f4; /* Light background for contrast */
+    color: #555; /* Updated text color for better readability */
+    font-family: "Barlow", Arial, sans-serif; /* Updated font */
+}
+
+h1 {
+    color: #333;
+    font-weight: 700; /* Stronger font weight */
+    font-size: 2.5rem; /* Larger font size */
+    margin-bottom: 20px; /* Space below heading */
+    text-align: center; /* Center align heading */
+}
+
+nav {
+    text-align: center; /* Center align navigation items */
+    margin: 20px 0; /* Margin above and below nav */
+}
+
+nav a {
+    margin: 0 15px; /* Space between links */
+    color: #fff; /* White color for text */
+    background-color: #846107; /* Dark background for links */
+    padding: 10px 15px; /* Padding inside links */
+    border-radius: 4px; /* Rounded corners */
+    text-decoration: none; /* No underline */
+    font-size: 1.2rem; /* Larger font size for links */
+    transition: background-color 0.3s ease; /* Smooth background transition */
+}
+
+nav a:hover {
+    color: #ffffff; /* Orange color on hover */
+}
+.content-wrapper {
+    transform: translateY(-150px); /* Adjust this value to lift the content */
+    text-align: center; /* Ensure text is centered */
+}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body><div class="content-wrapper">
+    <h1>Welcome to the College Finder</h1>
+    <nav>
+        <a href="/login">Login</a>  <a href="/register">Register</a>
+    </nav></div>
+</body>
+</html>

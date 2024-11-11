@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style> body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f7fa; /* Light background */
+    }
+    
+    header {
+        background-color: #f8f9fac1;
+        padding: 10px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .logout-button {
+        position: absolute;
+        right: 20px; /* Adjust this value for horizontal spacing */
+        top: 10px; /* Adjust this value for vertical spacing */
+    }
+
+    .logout-button a {
+        padding: 8px 12px;
+        background-color: #dc3545; /* Bootstrap danger color */
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .logout-button a:hover {
+        background-color: #c82333; /* Darker shade for hover effect */
+    }
+
+    h1 {
+        text-align: center;
+        margin: 0;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #333;
+    }
+
+    .nav-buttons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 10px 0;
+        
+    }
+
+    .nav-buttons a {
+        margin: 15px 25px; /* Increased margin for better spacing */
+        padding: 10px 15px;
+        background-color: #9e7e1c;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .nav-buttons a:hover {
+        background-color: #4f3c04;
+    }
+
+    section {
+        margin: 20px; 
+        padding-top: 10px; 
+        scroll-margin-top: 80px; 
+        background-color: rgba(255, 255, 255, 0.789); /* White background for content */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        color: #b09c00;
+        margin-bottom: 15px;
+    }
+
+    p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        text-align: justify;
+        color:rgb(0, 0, 0);
+    }
+
+    img {
+        display: block;
+        margin: 20px auto;
+        width: 100%;
+        max-width: 600px;
+        border-radius: 8px; /* Slightly rounded corners for images */
+    }
+
+    .back-button {
+        position: absolute;
+        left: 20px; /* Adjust this value for horizontal spacing */
+        top: 10px;
+    }
+
+    .back-button a {
+        padding: 8px 12px;
+        background-color: #8c3300; /* Custom brown color */
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .back-button a:hover {
+        background-color: #311000; /* Darker shade for hover effect */
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 10px 0;
+    }
+
+    table, th, td {
+        border: 1px solid #1c1c1c;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #e7e7e7ec;
+        color:black;
+    }
+    td{
+        background-color: #ffffffcc;
+        color:black;
+    }
+
+</style>
+    <title>Deparments</title>
+</head>
+<body>
+    <header><div class="back-button">
+        <a href="{{ url_for('engineering_colleges') }}">Back</a>
+    </div>
+        <h1>{{ college_name }}</h1>
+        <div class="nav-buttons">
+            <a href="{{ url_for('info', college_id=college_id) }}">Information</a>
+            <a href="{{ url_for('course', college_id=college_id) }}">Courses & Fees</a>
+            <a href="{{ url_for('distance', college_id=college_id) }}">Distance Education</a>
+            <a href="{{ url_for('adms', college_id=college_id) }}">Admission</a>
+            <a href="{{ url_for('reviews', college_id=college_id) }}">Reviews</a>
+            <a href="{{ url_for('departments', college_id=college_id) }}">Departments</a>
+            <a href="{{ url_for('cutoff', college_id=college_id) }}">Cutoff</a>
+            <a href="{{ url_for('placement', college_id=college_id) }}">Placement</a>
+            <a href="{{ url_for('ranking', college_id=college_id) }}">Ranking</a>
+            <a href="{{ url_for('gallery', college_id=college_id) }}">Gallery</a>
+            <a href="{{ url_for('scholarship', college_id=college_id) }}">Scholarship</a>
+            <a href="{{ url_for('faculty', college_id=college_id) }}">Faculty</a>
+            <a href="{{ url_for('news', college_id=college_id) }}">News & Articles</a>
+            <a href="{{ url_for('hostel', college_id=college_id) }}">Hostel</a>
+            <a href="{{ url_for('qa', college_id=college_id) }}">Q&A</a>
+            
+
+        </div>
+        <div class="logout-button">
+            <a href="/logout">Logout</a> 
+        </div>
+    </header>
+    <section id="departments">
+        <h2>Departments</h2>
+        <table>
+            <tr>
+                <th>Department Name</th>
+                <th>Location</th>
+            </tr>
+            {% for department in departments_info %}
+            <tr>
+                <td>{{ department.department }}</td>
+                <td>{{ department.location }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ college_info['College Name'] }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: #f8f9fa;
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .logout-button {
+            position: absolute;
+            right: 20px; /* Adjust this value for horizontal spacing */
+            top: 10px; /* Adjust this value for vertical spacing */
+        }
+
+        .logout-button a {
+            padding: 8px 12px;
+            background-color: #dc3545; /* Bootstrap danger color */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .logout-button a:hover {
+            background-color: #c82333; /* Darker shade for hover effect */
+        }
+
+
+        h1 {
+            text-align: center;
+            margin: 0;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+
+        .nav-buttons a {
+            margin: 15px 25px; /* Increased margin for better spacing */
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-buttons a:hover {
+            background-color: #0056b3;
+        }
+
+        section {
+            margin: 20px; 
+            padding-top: 10px; 
+            scroll-margin-top: 80px; 
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{{ college_info['College Name'] }}</h1>
+        <div class="nav-buttons">
+            <a href="#information">Information</a>
+            <a href="#courses">Courses & Fees</a>
+            <a href="#distance">Distance Education</a>
+            <a href="#admission">Admission</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#departments">Departments</a>
+            <a href="#cutoff">Cutoff</a>
+            <a href="#placement">Placement</a>
+            <a href="#ranking">Ranking</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#scholarship">Scholarship</a>
+            <a href="#faculty">Faculty</a>
+            <a href="#news">News & Articles</a>
+            <a href="#hostel">Hostel</a>
+            <a href="#qa">Q&A</a>
+        </div>
+    <div class="logout-button">
+        <a href="/logout">Logout</a> 
+    </div>
+    </header>
+    <section id="information">
+        <h2>Information</h2>
+        <p>{{ college_info['Info Data'] }}</p>
+        <img src="{{gallery_info[0]['Image Source']}}" style="display: block; margin: 0 auto;">
+    </section>
+
+    <section id="courses">
+        <h2>Courses & Fees</h2>
+        <table>
+            <tr>
+                <th>Course Name</th>
+                <th>Fees</th>
+                <th>Eligibility</th>
+                <th>Application Date</th>
+            </tr>
+            {% for course in course_fees_info %}
+            <tr>
+                <td>{{ course['Course'] }}</td>
+                <td>{{ course['Fees'] }}</td>
+                <td>{{ course['Eligibility'] }}</td>
+                <td>{{ course['Application Date'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+    <section id="distance">
+        <h2>Distance Education</h2>
+        <p>{{ distance_info['Distance Education Info'] }}</p>
+    </section>
+
+    <section id="admission">
+        <h2>Admission Details</h2>
+        <p>{{ admission_info['Info'] }}</p>
+    </section>
+
+    <section id="reviews">
+        <h2>Reviews</h2>
+        <table>
+            <tr>
+                <th>Rating</th>
+                <th>Pros</th>
+                <th>Cons</th>
+            </tr>
+            {% for review in reviews_info %}
+            <tr>
+                <td>{{ review['Rating'] }}</td>
+                <td>
+                    {% for paragraph in review['Pros'].split('|') %}
+                        <p>{{ paragraph.strip() }}</p>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for paragraph in review['Cons'].split('|') %}
+                        <p>{{ paragraph.strip() }}</p>
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+    <section id="departments">
+        <h2>Departments</h2>
+        <table>
+            <tr>
+                <th>Department Name</th>
+                <th>Location</th>
+            </tr>
+            {% for department in departments_info %}
+            <tr>
+                <td>{{ department['Department'] }}</td>
+                <td>{{ department['Location'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+    <section id="cutoff">
+        <h2>Cutoff Marks</h2>
+        <table>
+            <tr>
+                <th>Course Name</th>
+                <th>Cutoff Marks</th>
+            </tr>
+            {% for cutoff in cutoff_info %}
+            <tr>
+                <td>{{ cutoff['Course Name'] }}</td>
+                <td>{{ cutoff['Cutoff Mark'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+    <section id="placement">
+        <h2>Placement</h2>
+        <table>
+            <thead>
+                <tr>
+                    {% set headings = placement_info[0]['Headings'].split(', ') %}
+                    {% for heading in headings[:3] %}
+                        <th>{{ heading.strip() }}</th>  
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+            {% for placement in placement_info %}
+            <tr>
+                <td>{{ placement['Company'] }}</td>
+                <td>{{ placement['Package'] }}</td>
+                <td>{{ placement['Job Roles'] }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <section id="ranking">
+        <h2>Ranking</h2>
+        <table>
+            <tr>
+                <th>Ranking Agency</th>
+                <th>Year</th>
+                <th>Rank</th>
+            </tr>
+            {% for rank in ranking_info %}
+            <tr>
+                <td>{{ rank['Ranking Agency'] }}</td>
+                <td>{{ rank['Year'] }}</td>
+                <td>{{ rank['Rank'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <table>
+            <tr >
+                {% for image in gallery_info %}
+                <td style="text-align: center; vertical-align: middle; padding: 10px; border: 1px solid #ddd;">
+                    <a href="{{ image['Image Source'] }}" target="_blank">
+                        <img src="{{ image['Image Source'] }}" alt="Gallery Image" style="width: 100px; height: auto;">
+                    </a>
+                </td>
+                {% if loop.index % 4 == 0 and not loop.last %} </tr><tr> {% endif %}
+                {% endfor %}
+                 </tr> 
+            </tr>
+        </table>
+    </section>
+
+    <section id="scholarship">
+        <h2>Scholarship</h2>
+        <p>{{ scholarship_info['Scholarship Info'] }}</p>
+    </section>
+
+    <section id="faculty">
+        <h2>Faculty</h2>
+        <table>
+            <tr>
+                <th>Faculty Name</th>
+                <th>Title</th>
+                <th>Department</th>
+                <th>Phone</th>
+                <th>Email</th>
+            </tr>
+            {% for faculty in faculty_info %}
+            <tr>
+                <td>{{ faculty['Faculty Name'] }}</td>
+                <td>{{ faculty['Title'] }}</td>
+                <td>{{ faculty['Department'] }}</td>
+                <td>{{ faculty['Phone No'] }}</td>
+                <td>{{ faculty['Email'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+    <section id="news">
+        <h2>News & Articles</h2>
+        <table>
+            <tr>
+                <th>Serial No</th>
+                <th>Article</th>
+            </tr>
+            {% for article in news_info %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td><a href="{{ article['Link'] }}" target="_blank">{{ article['Title'] }}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+    <section id="hostel">
+        <h2>Hostel Facilities</h2>
+        <p>{{ hostel_info['Info'] }}</p>
+    </section>
+    <section id="qa">
+        <h2>Q & A</h2>
+        {% for qa in qa_info %}
+        <p>{{loop.index}}.{{qa['Question']}}</p>
+        <p>Ans:{{ qa['Answer'] }}</p>
+        {% endfor %}
+    </section>
+    <script>
+        document.querySelectorAll('.nav-buttons a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+    
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 190, // Adjust this value to the height of the sticky header
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+    
+
+</body>
+</html>

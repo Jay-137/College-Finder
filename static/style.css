@@ -1,0 +1,97 @@
+/* Base Styles */
+body {
+    font-family: "Barlow", Arial, sans-serif; /* Updated font */
+    margin: 0; /* Removed margin for a cleaner layout */
+    padding: 0;
+    background-color: #f4f4f4; /* Light background for contrast */
+    color: #555; /* Updated text color for better readability */
+    background-image: url("/static/bg image.jpg");
+    background-size: cover; /* Optional: to make the image cover the entire body */
+    background-repeat: no-repeat; /* Optional: to prevent the image from repeating */
+    background-attachment: fixed;
+}
+
+/* Typography */
+h1 {
+    color: #ffffff;
+    font-weight: 700; /* Stronger font weight */
+    font-size: 2.5rem; /* Larger font size */
+    margin-bottom: 20px; /* Space below headings */
+}
+
+/* Form Styles */
+form {
+    margin: 20px 0;
+    background-color: #fff; /* White background for forms */
+    padding: 20px; /* Padding for form content */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+input {
+    padding: 10px;
+    margin-right: 10px;
+    border: 2px solid #ddd; /* Light border */
+    border-radius: 4px; /* Slightly rounded edges */
+    font-size: 1rem; /* Consistent font size */
+    width: calc(100% - 120px); /* Responsive input width */
+}
+
+input:focus {
+    border-color: #007BFF; /* Blue border on focus */
+    outline: none; /* Remove outline */
+}
+
+/* Button Styles */
+button {
+    padding: 10px 15px; /* More padding for buttons */
+    background-color: #846107; /* Blue background */
+    color: #fff; /* White text */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 1rem; /* Consistent font size */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s ease; /* Smooth background transition */
+}
+
+button:hover {
+    background-color:#110802 /* Darker blue on hover */
+}
+
+/* Navigation Styles */
+nav {
+    text-align: center; /* Center align navigation items */
+    margin: 20px 0; /* Margin above and below nav */
+}
+
+nav a {
+    
+        margin: 0 15px; /* Space between links */
+        color: #fff; /* White color for text */
+        background-color: #846107; /* Dark background for links */
+        padding: 10px 15px; /* Padding inside links */
+        border-radius: 4px; /* Rounded corners */
+        text-decoration: none; /* No underline */
+        font-size: 1.2rem; /* Larger font size for links */
+        transition: background-color 0.3s ease; /* Smooth background transition */
+}
+nav a:hover {
+    background-color: #110802; /* Orange color on hover */
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    input {
+        width: calc(100% - 20px); /* Full width on small screens */
+        margin-bottom: 10px; /* Space below inputs */
+    }
+
+    nav {
+        text-align: center; /* Center align nav items */
+    }
+
+    nav a {
+        display: inline-block; /* Inline for better alignment */
+        margin-bottom: 10px; /* Space below links */
+    }
+}

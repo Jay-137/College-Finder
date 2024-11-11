@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Colleges</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333; /* Text color */
+            background-color: #f4f4f4; /* Light background color */
+           
+}
+        
+
+        /* Header Styling */
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            color: #f9f9f9;
+            margin-top: 50px;
+        }
+
+        /* Logout Button Styling */
+        .logout-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #dc3545;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-button:hover {
+            background-color: #c82333;
+        }
+
+        /* Back Button Styling */
+        .back-button {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            padding: 10px 20px;
+            background-color: #8c3300;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+
+        .back-button:hover {
+            background-color: #5e1c00; /* Darker shade for hover effect */
+        }
+
+        /* Form Styling */
+        form {
+    display: flex; /* Display as a flex container */
+    align-items: center; /* Align items vertically */
+    justify-content: center; /* Center the content horizontally */
+    margin: 30px auto; /* Center the form */
+    padding: 10px;
+    background-color: white; /* White background for form */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    max-width: 500px; /* Limit form width */
+}
+
+form input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    flex: 1; /* Take up remaining space */
+    margin-right: 10px; /* Space between input and button */
+}
+
+form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #846107; /* Button background color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+        form button:hover {
+            background-color: #110802;
+        }
+
+        /* Table Styling */
+        table {
+            width: 90%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            text-align: left;
+            background-color: white; /* White background for table */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+            border-radius: 8px;
+        }
+
+        th, td {
+            border: 2px solid #110802;
+            padding: 15px;
+            font-size: 16px;
+        }
+
+        th {
+            background-color:#846107;
+            color: white;
+            text-align: center;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9; /* Light gray for even rows */
+        }
+
+        /* Link Styling for College Names */
+        a {
+            text-decoration: none;
+            color:#7a5801;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #271700;
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            table {
+                width: 100%;
+                margin: 20px;
+            }
+
+            form input[type="text"] {
+                width: 70%;
+            }
+
+            form button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+
+            .logout-button, .back-button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="{{ url_for('landing_page') }}" class="back-button">Back</a>
+    <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+    <h1>Engineering Colleges</h1>
+    
+    <form method="POST">
+        <input type="text" name="search_query" placeholder="Search Colleges">
+        <button type="submit">Search</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Serial No.</th>
+                <th>College Name</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for college in colleges %}
+            <tr>
+                <td>{{ college.serial_no }}</td>
+                <td><a href="{{ url_for('info', college_id=college.serial_no) }}">{{ college.name }}</a></td>
+                <td>{{ college.location }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
